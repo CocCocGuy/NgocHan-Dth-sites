@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Heart Explosion with Message</title>
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #0b0c2a;
+      overflow: hidden;
+      background-image: radial-gradient(circle, #1a1a1a, #000);
+    }
+
+    .heart-container {
+      position: relative;
+      width: 300px;
+      height: 300px;
+    }
+
+    /* Trái tim chính */
+    .heart {
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(-45deg);
+      background: linear-gradient(145deg, #F0D6FA, #E0B6EA);
+      animation: pulse 1.5s infinite ease-in-out;
+      box-shadow: 0 0 30px rgba(240, 214, 250, 0.7), 0 0 60px rgba(240, 214, 250, 0.5), 0 0 100px rgba(240, 214, 250, 0.3);
+      cursor: pointer;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: '';
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      background: linear-gradient(145deg, #F0D6FA, #E0B6EA);
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -100px;
+      left: 0;
+    }
+
+    .heart::after {
+      left: 100px;
+      top: 0;
+    }
+
+    /* Hiệu ứng đập nhịp */
+    @keyframes pulse {
+      0% {
+        transform: translate(-50%, -50%) scale(1) rotate(-45deg);
+      }
+      50% {
+        transform: translate(-50%, -50%) scale(1.1) rotate(-45deg);
+      }
+      100% {
+        transform: translate(-50%, -50%) scale(1) rotate(-45deg);
+      }
+    }
+
+    /* Hiệu ứng nở rộng và nổ ra */
+    @keyframes explode {
+      0% {
+        transform: translate(-50%, -50%) scale(1) rotate(-45deg);
+        opacity: 1;
+      }
+      80% {
+        transform: translate(-50%, -50%) scale(30) rotate(-45deg);
+        opacity: 0.7;
+      }
+      100% {
+        transform: translate(-50%, -50%) scale(40) rotate(-45deg);
+        opacity: 0;
+      }
+    }
+
+    /* Kim tuyến nổ ra */
+    .glitter {
+      position: absolute;
+      top: -10px;
+      background-color: white;
+      border-radius: 50%;
+      box-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
+      width: 4px;
+      height: 4px;
+      animation: glitterFall 3s infinite ease-in-out;
+      opacity: 0;
+    }
+
+    @keyframes glitterFall {
+      0% {
+        transform: translateY(0);
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(100vh);
+        opacity: 0;
+      }
+    }
+
+    /* Khi trái tim nổ */
+    .heart.expand {
+      animation: explode 2s forwards;
+    }
+
+    /* Khi kim tuyến bắt đầu rơi */
+    .glitter.active {
+      animation-delay: 2s;
+      animation-duration: 4s;
+    }
+
+    /* Mưa kim tuyến dày đặc */
+    .glitter {
+      position: absolute;
+      top: -10px;
+      background-color: white;
+      border-radius: 50%;
+      box-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
+      width: 4px;
+      height: 4px;
+      animation: glitterFall 3s infinite ease-in-out;
+      opacity: 0;
+    }
+
+    /* Tạo nhiều chấm kim tuyến ngẫu nhiên */
+    .glitter:nth-child(1) { left: 1%; animation-duration: 2s; }
+    .glitter:nth-child(2) { left: 3%; animation-duration: 2.2s; }
+    .glitter:nth-child(3) { left: 5%; animation-duration: 1.9s; }
+    .glitter:nth-child(4) { left: 7%; animation-duration: 2.5s; }
+    .glitter:nth-child(5) { left: 9%; animation-duration: 2.3s; }
+    .glitter:nth-child(6) { left: 11%; animation-duration: 2s; }
+    .glitter:nth-child(7) { left: 13%; animation-duration: 1.8s; }
+    .glitter:nth-child(😎 { left: 15%; animation-duration: 2.4s; }
+    .glitter:nth-child(9) { left: 17%; animation-duration: 2.6s; }
+    .glitter:nth-child(10) { left: 19%; animation-duration: 2.1s; }
+    .glitter:nth-child(11) { left: 21%; animation-duration: 1.7s; }
+    .glitter:nth-child(12) { left: 23%; animation-duration: 2.5s; }
+    .glitter:nth-child(13) { left: 25%; animation-duration: 1.9s; }
+    .glitter:nth-child(14) { left: 27%; animation-duration: 2.2s; }
+    .glitter:nth-child(15) { left: 29%; animation-duration: 2.8s; }
+    .glitter:nth-child(16) { left: 31%; animation-duration: 2.3s; }
+    .glitter:nth-child(17) { left: 33%; animation-duration: 1.7s; }
+    .glitter:nth-child(18) { left: 35%; animation-duration: 2.7s; }
+    .glitter:nth-child(19) { left: 37%; animation-duration: 2s; }
+    .glitter:nth-child(20) { left: 39%; animation-duration: 2.1s; }
+    .glitter:nth-child(21) { left: 41%; animation-duration: 2.9s; }
+    .glitter:nth-child(22) { left: 43%; animation-duration: 2s; }
+    .glitter:nth-child(23) { left: 45%; animation-duration: 2.4s; }
+    .glitter:nth-child(24) { left: 47%; animation-duration: 1.9s; }
+    .glitter:nth-child(25) { left: 49%; animation-duration: 1.8s; }
+    .glitter:nth-child(26) { left: 51%; animation-duration: 2.3s; }
+    .glitter:nth-child(27) { left: 53%; animation-duration: 2.1s; }
+    .glitter:nth-child(28) { left: 55%; animation-duration: 1.9s; }
+    .glitter:nth-child(29) { left: 57%; animation-duration: 2.2s; }
+    .glitter:nth-child(30) { left: 59%; animation-duration: 2.6s; }
+    .glitter:nth-child(31) { left: 61%; animation-duration: 1.8s; }
+    .glitter:nth-child(32) { left: 63%; animation-duration: 2.1s; }
+    .glitter:nth-child(33) { left: 65%; animation-duration: 2.7s; }
+    .glitter:nth-child(34) { left: 67%; animation-duration: 2.4s; }
+    .glitter:nth-child(35) { left: 69%; animation-duration: 1.7s; }
+    .glitter:nth-child(36) { left: 71%; animation-duration: 2.5s; }
+    .glitter:nth-child(37) { left: 73%; animation-duration: 2.8s; }
+    .glitter:nth-child(38) { left: 75%; animation-duration: 2.1s; }
+    .glitter:nth-child(39) { left: 77%; animation-duration: 1.9s; }
+    .glitter:nth-child(40) { left: 79%; animation-duration: 2.3s; }
+    .glitter:nth-child(41) { left: 81%; animation-duration: 1.9s; }
+    .glitter:nth-child(42) { left: 83%; animation-duration: 2.7s; }
+    .glitter:nth-child(43) { left: 85%; animation-duration: 2.1s; }
+    .glitter:nth-child(44) { left: 87%; animation-duration: 1.8s; }
+    .glitter:nth-child(45) { left: 89%; animation-duration: 2.4s; }
+    .glitter:nth-child(46) { left: 91%; animation-duration: 2.6s; }
+    .glitter:nth-child(47) { left: 93%; animation-duration: 2.5s; }
+    .glitter:nth-child(48) { left: 95%; animation-duration: 1.9s; }
+    .glitter:nth-child(49) { left: 97%; animation-duration: 2.1s; }
+    .glitter:nth-child(50) { left: 99%; animation-duration: 2.5s; }
+
+    /* Dòng chữ "Lov u my princess" */
+    .message {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 3rem;
+      font-family: 'Bradley Hand ITC', cursive;
+      font-style: italic; /* Chữ nghiêng */
+      color: #F0D6FA;
+      opacity: 0;
+      display: none;
+      animation: showMessage 2s forwards;
+      animation-delay: 1s;
+    }
+
+    /* Hiệu ứng hiện chữ */
+    @keyframes showMessage {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Container trái tim -->
+  <div class="heart-container">
+    <div class="heart" id="heart"></div>
+  </div>
+
+  <!-- Kim tuyến nổ ra -->
+  <div class="glitter"></div>
+  <div class="glitter"></div>
+  <div class="glitter"></div>
+  <div class="glitter"></div>
+  <div class="glitter"></div>
+  <div class="glitter"></div>
+  <div class="glitter"></div>
+  <div class="glitter"></div>
+  <div class="glitter"></div>
+  <div class="glitter"></div>
+  <div class="glitter"></div>
+  <div class="glitter"></div>
+  <div class="glitter"></div>
+  <div class="glitter"></div>
+  <div class="glitter"></div>
+  <div class="glitter"></div>
+  <div class="glitter"></div>
+  <div class="glitter"></div>
+  <div class="glitter"></div>
+  <div class="glitter"></div>
+  <div class="glitter"></div>
+  <div class="glitter"></div>
+  <div class="glitter"></div>
+  <div class="glitter"></div>
+  <div class="glitter"></div>
+  <div class="glitter"></div>
+  <div class="glitter"></div>
+  <div class="glitter"></div>
+  <div class="glitter"></div>
+  <div class="glitter"></div>
+  <div class="glitter"></div>
+  <div class="glitter"></div>
+  <div class="glitter"></div>
+  <div class="glitter"></div>
+  <div class="glitter"></div>
+  <div class="glitter"></div>
+  <div class="glitter"></div>
+  <div class="glitter"></div>
+  <div class="glitter"></div>
+  <div class="glitter"></div>
+  <div class="glitter"></div>
+
+  <!-- Dòng chữ -->
+  <div class="message" id="message">Lov u my princess</div>
+
+  <script>
+    // Khi nhấn vào trái tim, trái tim sẽ nổ và kim tuyến sẽ xuất hiện
+    document.getElementById('heart').addEventListener('click', function() {
+      this.classList.add('expand');
+      document.querySelectorAll('.glitter').forEach(function(glitter) {
+        glitter.classList.add('active');
+      });
+      setTimeout(function() {
+        document.getElementById('message').style.display = 'block';
+        document.getElementById('message').classList.add('active');
+      }, 1000); // Hiển thị dòng chữ sau 1 giây
+    });
+  </script>
+
+</body>
+</html>
